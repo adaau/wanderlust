@@ -17,6 +17,8 @@ gem 'bootstrap_form'
 gem 'wannabe_bool'
 gem 'paperclip', "~> 4.3"
 gem 'turbolinks'
+gem 'devise_token_auth'
+gem 'omniauth'
 
 group :development, :test do
   gem 'better_errors'
