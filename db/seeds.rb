@@ -40,3 +40,28 @@ Place.destroy_all
     country: "China",
     }
   ])
+
+Bookmark.destroy_all
+
+  bookmarks = Bookmark.create([
+    {list: "January",
+    comment: "new year",
+    place_id: places.first.id
+    },
+    {list: "January",
+    comment: "summer there",
+    place_id: places.second.id
+    },
+    {list: "February",
+    comment: "good eats",
+    place_id: places.third.id
+    },
+    {list: "June",
+    comment: "wimbledon",
+    place_id: places.fourth.id
+    },
+    {list: "June",
+    comment: "summer holiday",
+    place_id: places.fifth.id
+    }
+  ])
