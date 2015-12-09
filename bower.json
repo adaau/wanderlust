@@ -1,0 +1,9 @@
+{
+  "name": "wanderlust",
+  "version": "0.0.1",
+  "dependencies": {
+    "ng-token-auth": "~0.0.28",
+    "angular": "~1.4.8",
+    "angular-ui-router": "~0.2.15"
+  }
+}

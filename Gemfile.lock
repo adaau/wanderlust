@@ -56,6 +56,8 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
     bootstrap_form (2.3.0)
+    bower (0.0.5)
+      multi_json
     builder (3.2.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -182,8 +184,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -208,6 +208,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   bootstrap_form
+  bower
   coffee-rails (~> 4.1.0)
   devise_token_auth
   dotenv-rails
@@ -221,7 +222,6 @@ DEPENDENCIES
   rails_12factor
   sass-rails (~> 5.0)
   spring
-  turbolinks
   uglifier (>= 1.3.0)
   wannabe_bool
   web-console (~> 2.0)
