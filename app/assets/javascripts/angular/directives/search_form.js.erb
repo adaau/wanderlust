@@ -1,6 +1,7 @@
 app.directive('searchForm', function() {
   return {
     restrict: 'E',
-    templateUrl: '<%= asset_path("partials/search_form.html") %>'
+    templateUrl: '<%= asset_path("partials/search_form.html") %>',
+    controller: 'PlaceCtrl'
   }
 })

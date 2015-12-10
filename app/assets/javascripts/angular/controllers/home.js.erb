@@ -1,5 +1,15 @@
-app.controller('HomeCtrl', ['$scope', '$auth', '$location', function($scope, $auth, $location){
+app.controller('HomeCtrl', ['$scope', '$auth', '$location', '$http', function($scope, $auth, $location, $http){
   console.log('HomeCtrl')
-  $scope.message = "test"
 
+  // $scope.places = [];
+
+  // function getPlaces() {
+  //   $http
+  //     .get('http://localhost:3000/api/places')
+  //     .then(function(response){
+  //       $scope.places = response.data;
+  //     });
+  // }
+
+  // getPlaces();
 }])

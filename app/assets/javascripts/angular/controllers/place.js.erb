@@ -1,0 +1,14 @@
+app.controller('PlaceCtrl', ['$scope', '$auth', '$http', function($scope, $auth, $http){
+  console.log('PlaceCtrl')
+  $scope.places = [];
+
+  function getPlaces() {
+    $http
+      .get('http://localhost:3000/api/places')
+      .then(function(response){
+        $scope.places = response.data;
+      });
+  }
+
+  getPlaces();
+}])
