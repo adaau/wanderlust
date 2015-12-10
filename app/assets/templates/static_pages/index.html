@@ -1,65 +1,60 @@
-<!--
-<div class="container">
-  <div class="row">
-    <h1> {{ message }} </h1>
+<main id="homepage">
+  <div class="container header-content">
+
+    <div class="row header-content-inner">
+      <div class="col-md-8 col-md-offset-2">
+        <h1 class="headline">PLAN YOUR DESTINATION</h1>
+        <h3 class="sub-headline">Find the best places to visit by month</h3>
+        <!-- <a href="/" class="btn btn-info btn-lg btn-heading">GO</a> -->
+      </div>
+    </div>
+
+    <div class="row forms">
+      <form action="">
+        <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-2">
+          <div class="form-group">
+            <select name="month" class="form-control">
+              <option disabled selected>Select Month</option>
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select name="category" class="form-control">
+              <option disabled selected>Select Destination Category</option>
+              <option value="Beach">Beach</option>
+              <option value="City">City</option>
+              <option value="Nature">Nature</option>
+              <option value="Snow">Snow</option>
+            </select>
+          </div>
+        </div><!-- /.left form section -->
+
+        <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-1 col-md-offset-0">
+          <h4>OR</h4>
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0">
+          <div class="form-group">
+            <input type="text" name="place" class="form-control" placeholder="Input destination">
+          </div>
+        </div><!-- /.right form section -->
+
+        <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-0">
+          <button type="submit" class="btn btn-info btn-heading">Discover</button>
+        </div>
+      </form>
+    </div>
+
   </div>
-
-  <div class="row">
-    <a href="/#/signup"><button class="btn btn-primary">Signup</button></a>
-  </div>
-
-  <div class="row">
-    <button class="btn btn-danger" ng-click="logout()">Logout</button>
-  </div>
-</div> -->
-
-<div class="left-half">
-  <h1>Find Your Next Destination</h1>
-  <form class="col-xs-6 col-xs-offset-3" action="">
-    <div class="form-group">
-      <select name="month" class="form-control">
-        <option disabled selected>Select Month</option>
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-        <option value="April">April</option>
-        <option value="May">May</option>
-        <option value="June">June</option>
-        <option value="July">July</option>
-        <option value="August">August</option>
-        <option value="September">September</option>
-        <option value="October">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <select name="category" class="form-control">
-        <option disabled selected>Select Destination Category</option>
-        <option value="Beach">Beach</option>
-        <option value="City">City</option>
-        <option value="Nature">Nature</option>
-        <option value="Snow">Snow</option>
-      </select>
-    </div>
-
-    <div>
-      <button type="submit" class="btn btn-success">Discover</button>
-    </div>
-  </form>
-
-</div>
-
-<div class="right-half">
-  <h1>Find The Best Time To Go</h1>
-  <form class="col-xs-6 col-xs-offset-3" action="">
-    <div class="form-group">
-      <input type="text" name="place" class="form-control" placeholder="Input destination">
-    </div>
-
-    <div>
-      <button type="submit" class="btn btn-success">Find</button>
-    </div>
-  </form>
-</div>
+</main>
