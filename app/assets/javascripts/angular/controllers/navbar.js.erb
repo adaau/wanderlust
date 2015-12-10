@@ -13,7 +13,7 @@ app.controller('NavbarCtrl', ['$scope', '$auth', 'UserFactory', '$rootScope', fu
     $scope.current_user = UserFactory.identity;
   });
 
-  // when user succesfully signs in with email on signup page
+  // when user succesfully signs up with email on signup page
   $rootScope.$on('auth:registration-email-success', function(ev, user) {
     UserFactory.identity = user;
     $scope.current_user = UserFactory.identity;
