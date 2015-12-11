@@ -19,6 +19,7 @@ gem 'paperclip', "~> 4.3"
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'bower'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'better_errors'

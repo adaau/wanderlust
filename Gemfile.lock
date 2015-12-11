@@ -214,6 +214,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   omniauth
   paperclip (~> 4.3)
   pg

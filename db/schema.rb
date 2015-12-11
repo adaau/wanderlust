@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208151505) do
+ActiveRecord::Schema.define(version: 20151211053336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,12 +37,6 @@ ActiveRecord::Schema.define(version: 20151208151505) do
   add_index "categories_places", ["category_id"], name: "index_categories_places_on_category_id", using: :btree
   add_index "categories_places", ["place_id"], name: "index_categories_places_on_place_id", using: :btree
 
-  create_table "months", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "months_places", id: false, force: :cascade do |t|
     t.integer "month_id", null: false
     t.integer "place_id", null: false
@@ -54,8 +48,11 @@ ActiveRecord::Schema.define(version: 20151208151505) do
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.string   "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "continent"
+    t.text     "avg_temps",                array: true
+    t.text     "avg_precips",              array: true
   end
 
   create_table "users", force: :cascade do |t|
