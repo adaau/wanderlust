@@ -2,9 +2,11 @@ app.controller('PlaceCtrl', ['$scope', '$auth', '$http', function($scope, $auth,
   console.log('PlaceCtrl')
   $scope.places = [];
 
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+
   function getPlaces() {
     $http
-      .get('http://localhost:3000/api/places')
+      .get(url + '/api/places')
       .then(function(response){
         $scope.places = response.data;
       });
