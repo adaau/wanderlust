@@ -30,8 +30,8 @@ task :city_data => :environment do
         browser3 = open(city_url).read
         html_doc3 = Nokogiri::HTML(browser3)
 
-        # avg_temps_array = html_doc3.css('div#temp tr:not(:first-child) td:nth-child(2)').text.gsub('F', '').split(' ')
-        # avg_precips_array = html_doc3.css('div#temp tr:not(:first-child) td:nth-child(3)').text.gsub('in', '').split(' ')
+        avg_temps_array = html_doc3.css('div#temp tr:not(:first-child) td:nth-child(2)').text.gsub('F', '').split(' ')
+        avg_precips_array = html_doc3.css('div#temp tr:not(:first-child) td:nth-child(3)').text.gsub('in', '').split(' ')
 
         best_months_array = html_doc3.css('div.content-main > div.box > p:nth-child(2)').to_s.gsub("</p>", '').split("<br>")
         best_months_array.shift
@@ -55,7 +55,11 @@ task :city_data => :environment do
         best_months_array.each do | month |
           month_id = Month.find_by(name: month).id
           # month_number = Date::MONTHNAMES.index(month)
-          puts month_number
+          puts month_id
+
+          place_id = Place.find_by(name: city_name).id
+          puts place_id
+
         end
 
         # get all the data for place. [DONE]
