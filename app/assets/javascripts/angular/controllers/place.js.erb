@@ -1,16 +1,48 @@
-app.controller('PlaceCtrl', ['$scope', '$auth', '$http', function($scope, $auth, $http){
+app.controller('PlaceCtrl', ['$scope', '$auth', '$http', '$resource', 'PlaceFactory', function($scope, $auth, $http, $resource, PlaceFactory){
   console.log('PlaceCtrl')
   $scope.places = [];
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
 
-  function getPlaces() {
-    $http
-      .get(url + '/api/places')
-      .then(function(response){
-        $scope.places = response.data;
-      });
-  }
+  // INDEX
+  // PlaceFactory.query(function(data) {
+  //   $scope.places = data;
+  // });
+  $scope.places = PlaceFactory.query();
 
-  getPlaces();
+  // Fetch the clicked place
+  $scope.selectPlace = function(place) {
+    $scope.selectedPlace = Place.get({ id: character._id });
+  };
+
+  // PlaceFactory.get({id: id}, function(data) {
+  //   $scope.place = data;
+  // });
+  // function getPlaces() {
+  //   $http
+  //     .get(url + '/api/places')
+  //     .then(function(response){
+  //       $scope.places = response.data;
+  //     });
+  // }
+
+// Show
+ // $scope.showPlace = function(place) {
+ //  console.log(place);
+ //  $scope.selected = place;
+ // };
+
+  // function showPlace() {
+  //   $http
+  //     .get(url + '/api/places/:id')
+  //     .then(function(response){
+  //       console.log(response);
+  //       $scope.place = response.data;
+  //     });
+  // }
+
+
+  // getPlaces();
+
+  // showPlace();
 }])

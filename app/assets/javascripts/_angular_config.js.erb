@@ -1,6 +1,6 @@
-var app = angular.module('wanderlust', ['ui.router', 'ng-token-auth'])
+var app = angular.module('wanderlust', ['ui.router', 'ng-token-auth', 'ngResource'])
 
-app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function ($stateProvider, $urlRouterProvider, $authProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$stateParams', function ($stateProvider, $urlRouterProvider, $authProvider, $stateParams) {
 
   $urlRouterProvider.otherwise('/')
 
@@ -24,6 +24,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function ($
       url: '/places',
       templateUrl: '<%= asset_path("places/index.html") %>',
       controller: 'PlaceCtrl'
+    })
+    .state('getplace', {
+      url: '/places/:id',
+      templateUrl: '<%= asset_path("places/show.html") %>',
+      controller: function($scope, $stateParams) {
+        $scope.id = $stateParams.placeId;
+      }
     })
 
   $authProvider.configure({

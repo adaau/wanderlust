@@ -13,9 +13,21 @@
       <search-form></search-form>
     </div>
 
-    <div ng-repeat="place in places | filter:location">
-      <place place="place"></place>
+    <ul>
+      <li ng-repeat="place in places | filter:location">
+        <a ui-sref="getplace"><place place="place"></place></a>
+      </li>
+    </ul>
+<!--     <div ng-repeat="place in places | filter:location">
+      <a ui-sref="getplace"><place place="place"></place></a>
     </div>
-
+ -->
   </div>
 </main>
+
+<!--
+<ul>
+    <li ng-repeat="character in char.characters" ng-click="char.selectCharacter(character)">
+      {{ character.firstName }}'s lightsaber is <span class="{{ character.lightsaber | lowercase }}">{{ character.lightsaber }}</span> <a href="#" ng-click="char.editCharacter(character)">Edit</a> <button ng-click="char.deleteCharacter(character)">Delete</button>
+    </li>
+  </ul> -->
