@@ -54,12 +54,21 @@ task :city_data => :environment do
 
         best_months_array.each do | month |
           month_id = Month.find_by(name: month).id
-          # month_number = Date::MONTHNAMES.index(month)
-          puts month_id
-
           place_id = Place.find_by(name: city_name).id
-          puts place_id
 
+          params = {
+            month_id: month_id,
+            place_id: place_id
+          }
+
+        #   month.places << params
+
+          mp = MonthPlace.new(params)
+          if mp.save
+            puts "saved #{month.id}"
+          else
+            puts mp.errors.messages
+          end
         end
 
         # get all the data for place. [DONE]
