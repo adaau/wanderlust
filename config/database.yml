@@ -23,6 +23,9 @@ default: &default
 
 development:
   <<: *default
+  adapter: postgresql
+  host: localhost
+  username: user
   database: app_development
 
   # The specified database role being used to connect to postgres.
