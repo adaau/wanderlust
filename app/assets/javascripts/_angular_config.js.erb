@@ -1,6 +1,6 @@
 var app = angular.module('wanderlust', ['ui.router', 'ng-token-auth', 'ngResource'])
 
-app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$stateParams', function ($stateProvider, $urlRouterProvider, $authProvider, $stateParams) {
+app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function ($stateProvider, $urlRouterProvider, $authProvider) {
 
   $urlRouterProvider.otherwise('/')
 
@@ -28,10 +28,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$statePara
     .state('getplace', {
       url: '/places/:id',
       templateUrl: '<%= asset_path("places/show.html") %>',
-      controller: function($scope, $stateParams) {
-        $scope.id = $stateParams.placeId;
-      }
+      controller: 'PlaceCtrl'
+      // controller: function($scope, $stateParams){
+      //   $scope.id = $stateParams.id;
+      // }
     })
+
+
 
   $authProvider.configure({
     // By default, you only need to configure apiUrl

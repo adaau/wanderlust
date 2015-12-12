@@ -1,4 +1,4 @@
-app.controller('PlaceCtrl', ['$scope', '$auth', '$http', '$resource', 'PlaceFactory', function($scope, $auth, $http, $resource, PlaceFactory){
+app.controller('PlaceCtrl', ['$scope', '$auth', 'PlaceFactory', function($scope, $auth, PlaceFactory){
   console.log('PlaceCtrl')
   $scope.places = [];
 
@@ -10,39 +10,12 @@ app.controller('PlaceCtrl', ['$scope', '$auth', '$http', '$resource', 'PlaceFact
   // });
   $scope.places = PlaceFactory.query();
 
+  // [Question: What do I replace the "1" with in line 14 if I want it to be any id?]
+  $scope.place = PlaceFactory.get({id: 1});
+
   // Fetch the clicked place
-  $scope.selectPlace = function(place) {
-    $scope.selectedPlace = Place.get({ id: character._id });
-  };
+  // $scope.selectPlace = function(place) {
+  //   $scope.selectedPlace = Place.get({ id: place._id });
+  // };
 
-  // PlaceFactory.get({id: id}, function(data) {
-  //   $scope.place = data;
-  // });
-  // function getPlaces() {
-  //   $http
-  //     .get(url + '/api/places')
-  //     .then(function(response){
-  //       $scope.places = response.data;
-  //     });
-  // }
-
-// Show
- // $scope.showPlace = function(place) {
- //  console.log(place);
- //  $scope.selected = place;
- // };
-
-  // function showPlace() {
-  //   $http
-  //     .get(url + '/api/places/:id')
-  //     .then(function(response){
-  //       console.log(response);
-  //       $scope.place = response.data;
-  //     });
-  // }
-
-
-  // getPlaces();
-
-  // showPlace();
 }])

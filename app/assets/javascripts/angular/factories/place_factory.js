@@ -9,6 +9,3 @@ function PlaceFactory($resource) {
     {id: '@_id'}
   );
 }
-
-
-
