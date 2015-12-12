@@ -1,4 +1,6 @@
 app.controller('HomeCtrl', ['$scope', '$auth', '$location', function($scope, $auth, $location){
+  console.log('HomeCtrl')
+  $scope.message = "test"
   $scope.logout = function () {
     $auth.signOut().then(function(resp) {
       console.log(resp);
