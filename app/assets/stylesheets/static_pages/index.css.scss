@@ -1,0 +1,128 @@
+body {
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+h1,
+h2 {
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 13px;
+  line-height: 1;
+  font-family: 'Merriweather', serif;
+  margin-bottom: 5px;
+}
+
+a {
+  color: #0099ff;
+}
+
+a:hover,
+a:focus {
+  color: #0000ff;
+}
+
+.top {
+  margin-top: 50px;
+}
+
+/*Navbar*/
+nav.navbar-default {
+  margin-bottom: 0;
+}
+
+nav div.container-fluid {
+  background-color: #aaaaaa
+}
+
+nav.navbar-default .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+nav.navbar-default .navbar-nav>li>a.hover {
+    color: #000080;
+}
+
+nav div.navbar-header a.logo {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+nav ul.navbar-right {
+  margin-right: 50px;
+}
+
+nav ul.navbar-right>li {
+  margin-left: 10px;
+}
+
+nav ul li>a {
+  font-size: 1.2em;
+}
+
+
+/*Landing Page*/
+main#homepage {
+  text-align: center;
+  color: #ffffff;
+  background-color: #000000;
+  background-image: image-url("santorini.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+main#homepage .header-content {
+  position: relative;
+  width: 100%;
+  padding: 200px 15px 50px;
+  text-align: center;
+}
+
+main#homepage .header-content .header-content-inner h1 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+main#homepage .header-content .header-content-inner p {
+  margin-bottom: 50px;
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+}
+
+main#homepage a.btn-heading {
+  width: 200px;
+}
+
+main#homepage div.forms {
+  margin-top: 200px;
+  background-color: rgb(150, 150, 150); /*Fallback*/
+  background-color: rgba(150, 150, 150, 0.35);
+  padding: 20px 0 20px;
+}
