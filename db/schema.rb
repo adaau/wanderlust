@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211042206) do
+ActiveRecord::Schema.define(version: 20151212160430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,9 @@ ActiveRecord::Schema.define(version: 20151211042206) do
     t.string   "continent"
     t.text     "avg_temps",                array: true
     t.text     "avg_precips",              array: true
+    t.text     "desc1"
+    t.text     "desc2"
+    t.text     "photo_main"
   end
 
   create_table "users", force: :cascade do |t|
