@@ -1,0 +1,35 @@
+<form ng-show="isCreating" ng-submit="createBookmark(newBookmark)">
+  <h2>Create a Bookmark</h2>
+  <div class="col-xs-8 col-sm-6 col-md-4">
+
+    <div class="form-group">
+      <label for="bookmark-list">Select a Bookmark List</label>
+      <select ng-model="newBookmark.list" name="bookmark-list" class="form-control">
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="bookmark-comment">Add a Note</label>
+      <input type="text" class="form-control" ng-model="newBookmark.comment" name="bookmark-comment">
+    </div>
+
+    <input type="hidden" ng-model="newBookmark.place_id">
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-info">Add Bookmark</button>
+      <button type="button" class="btn btn-default" ng-click="cancelCreating()">Cancel</button>
+    </div>
+  </div>
+</form>

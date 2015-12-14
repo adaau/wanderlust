@@ -1,0 +1,46 @@
+app.controller('BookmarkCtrl', ['$scope', 'BookmarkFactory', function($scope, BookmarkFactory){
+  console.log('BookmarkCtrl');
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+
+  $scope.isCreating = false
+
+  // INDEX
+  $scope.bookmarks = BookmarkFactory.query();
+
+  // CREATE
+  $scope.createBookmark = function() {
+    BookmarkFactory.save($scope.newBookmark, function(newBookmark) {
+      console.log(newBookmark);
+      $scope.bookmarks.push(newBookmark);
+      $scope.newBookmark = {}
+    });
+  }
+
+  // DELETE
+  $scope.deleteBookmark = function(bookmark) {
+    Bookmark.delete({ id: bookmark._id });
+    var index = $scope.bookmarks.indexOf(bookmark);
+    $scope.bookmarks.splice(index, 1);
+  }
+
+  function resetBookmarkForm() {
+    $scope.newBookmark = {
+      list: '',
+      comment: ''
+    }
+  }
+
+  function startCreating() {
+    $scope.isCreating = true;
+    resetBookmarkForm();
+  }
+
+  function cancelCreating() {
+    $scope.isCreating = false;
+    resetBookmarkForm();
+  }
+
+  $scope.startCreating = startCreating;
+  $scope.cancelCreating = cancelCreating;
+}])

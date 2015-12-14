@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151212160430) do
+ActiveRecord::Schema.define(version: 20151214114254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,12 @@ ActiveRecord::Schema.define(version: 20151212160430) do
     t.string   "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "place_id"
+    t.integer  "user_id"
   end
+
+  add_index "bookmarks", ["place_id"], name: "index_bookmarks_on_place_id", using: :btree
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -89,4 +94,6 @@ ActiveRecord::Schema.define(version: 20151212160430) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
+  add_foreign_key "bookmarks", "places"
+  add_foreign_key "bookmarks", "users"
 end

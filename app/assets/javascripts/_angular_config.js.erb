@@ -30,6 +30,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function ($
       templateUrl: '<%= asset_path("places/show.html") %>',
       controller: 'PlaceCtrl'
     })
+    .state('bookmarks', {
+      url: '/bookmarks',
+      templateUrl: '<%= asset_path("bookmarks/index.html") %>',
+      controller: 'BookmarkCtrl'
+    })
+
 
   $authProvider.configure({
     // By default, you only need to configure apiUrl
