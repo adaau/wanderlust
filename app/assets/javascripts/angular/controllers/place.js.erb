@@ -1,0 +1,13 @@
+app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', function($scope, $auth, $stateParams, PlaceFactory){
+  console.log('PlaceCtrl')
+  $scope.places = [];
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+
+  // INDEX
+  $scope.places = PlaceFactory.query();
+
+  // SHOW
+  $scope.place = PlaceFactory.get({id: $stateParams.id});
+
+}])

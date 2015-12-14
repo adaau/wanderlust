@@ -4,6 +4,9 @@
   "dependencies": {
     "ng-token-auth": "~0.0.28",
     "angular": "~1.4.8",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.6",
+    "angular-resource": "~1.4.8",
+    "highcharts": "~4.1.10"
   }
 }
