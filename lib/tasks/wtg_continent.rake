@@ -17,7 +17,7 @@ task :data_by_continent => :environment do
 
   #   browser2 = open(region_url).read
   #   html_doc2 = Nokogiri::HTML(browser2)
-  cities = html_doc.css(('div.tabberlive.tabberStyleTwo > div:nth-child(3).tabberTab > ul > li > a:nth-child(1)'))
+  cities = html_doc.css('div.tabberlive.tabberStyleTwo > div:nth-child(3).tabberTab > ul > li > a:nth-child(1)')
   cities.each do | city |
     city_name = city.text
     city_url = 'http://www.worldtravelguide.net' + city.attr('href')
@@ -30,45 +30,40 @@ task :data_by_continent => :environment do
     photos_link = html_doc2.css('ul > li.expanded.first.menu-top-item.active-trail.full > ul.menu > li:nth-child(4).leaf.menu-child-item > a:nth-child(1)')
     photos_url = 'http://www.worldtravelguide.net' + photos_link.attr('href')
 
-      browser3 = open(photos_url).read
-      html_doc3 = Nokogiri::HTML(browser3)
+    browser3 = open(photos_url).read
+    html_doc3 = Nokogiri::HTML(browser3)
 
-      photo_main = html_doc3.css('img.imagefield-field_hero_image').attr('src')
-      #   photo_thumbs = html_doc4.css('li > div > div > a')
-      #   photo_thumbs.each do | photo_thumb |
-      #     photo_thumbs_url = photo_thumbs.attr('href')
-      #     browser5 = open(photo_thumbs_url).read
-      #     html_doc5 = Nokogiri::HTML(browser5)
+    photo_main = html_doc3.css('img.imagefield-field_hero_image').attr('src')
+    #   photo_thumbs = html_doc4.css('li > div > div > a')
+    #   photo_thumbs.each do | photo_thumb |
+    #     photo_thumbs_url = photo_thumbs.attr('href')
+    #     browser5 = open(photo_thumbs_url).read
+    #     html_doc5 = Nokogiri::HTML(browser5)
 
-      #     photo_url = html_doc5.css('div.views-field-field-hero-image-fid > div > img').attr('src')
+    #     photo_url = html_doc5.css('div.views-field-field-hero-image-fid > div > img').attr('src')
 
-      #   end
+    #   end
 
-      # things_to_see_url = city_url + '/things-to-see'
-      #   browser6 = open(things_to_see_url).read
-      #   html_doc6 = Nokogiri::HTML(browser6)
+    # things_to_see_url = city_url + '/things-to-see'
+    #   browser6 = open(things_to_see_url).read
+    #   html_doc6 = Nokogiri::HTML(browser6)
 
-      #   attractions_array = html_doc6.css('div > div > div > div.views-field-title > span.field-content').to_s.gsub('<span class="field-content">','').split('</span>')
-      #   attractions_array.map { |a| a.squish! }
+    #   attractions_array = html_doc6.css('div > div > div > div.views-field-title > span.field-content').to_s.gsub('<span class="field-content">','').split('</span>')
+    #   attractions_array.map { |a| a.squish! }
 
-      params = {
-        name: city_name,
-        continent: "Asia",
-        desc1: desc1,
-        desc2: desc2,
-        photo_main: photo_main
-      }
+    params = {
+      name: city_name,
+      continent: "Asia",
+      desc1: desc1,
+      desc2: desc2,
+      photo_main: photo_main
+    }
 
-      place = Place.new(params)
-      if place.save
-        puts "saved #{place.name}"
-      else
-        puts place.errors.messages
-      end
-
-    # end
-
-
-  # end
-
+    place = Place.new(params)
+    if place.save
+      puts "saved #{place.name}"
+    else
+      puts place.errors.messages
+    end
+  end
 end

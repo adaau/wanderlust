@@ -37,26 +37,31 @@ task :city_data => :environment do
         best_months_array.shift
         best_months_array.map { |a| a.squish! }
 
-        # params = {
-        #   name: city_name,
-        #   country: country_name,
-        #   continent: continent_name,
-        #   avg_temps: avg_temps_array,
-        #   avg_precips: avg_precips_array,
-        # }
+        params = {
+          name: city_name,
+          country: country_name,
+          continent: continent_name,
+          avg_temps: avg_temps_array,
+          avg_precips: avg_precips_array,
+        }
 
-        # place = Place.new(params)
-        # if place.save
-        #   puts "saved #{place.name}"
-        # else
-        #   puts place.errors.messages
-        # end
+        place = Place.find_or_create_by(name: params[:name])
+        place.country = country_name          if place.country == nil
+        place.continent = continent_name      if place.continent == nil
+        place.avg_temps = avg_temps_array     if place.avg_temps == nil
+        place.avg_precips = avg_precips_array if place.avg_precips == nil
+
+        if place.save
+          puts "saved #{place.name} || id: #{place.id}"
+        else
+          puts place.errors.messages
+        end
 
         best_months_array.each do | month |
-          month = Month.find_by(name: month)
-          place = Place.find_by(name: city_name)
+          month_id = Month.find_by(name: month)
+          place    = Place.find_by(name: city_name)
 
-          place.months << month
+          place.months << month_id unless place.months == []
           # month_id = Month.find_by(name: month).id
           # place_id = Place.find_by(name: city_name).id
 
@@ -74,14 +79,6 @@ task :city_data => :environment do
           #   puts mp.errors.messages
           # end
         end
-
-        # get all the data for place. [DONE]
-        # save the place and retrieve the place_id  Place.pluck(:id)
-        # get best months [DONE]
-        # for each best_month
-          # get the month_id
-          # create a new MonthPlace with month_id and place_id
-
       end
     end
   end

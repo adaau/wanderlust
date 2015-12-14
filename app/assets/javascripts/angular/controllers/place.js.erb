@@ -1,21 +1,13 @@
-app.controller('PlaceCtrl', ['$scope', '$auth', 'PlaceFactory', function($scope, $auth, PlaceFactory){
+app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', function($scope, $auth, $stateParams, PlaceFactory){
   console.log('PlaceCtrl')
   $scope.places = [];
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
 
   // INDEX
-  // PlaceFactory.query(function(data) {
-  //   $scope.places = data;
-  // });
   $scope.places = PlaceFactory.query();
 
-  // [Question: What do I replace the "1" with in line 14 if I want it to be any id?]
-  $scope.place = PlaceFactory.get({id: 1});
-
-  // Fetch the clicked place
-  // $scope.selectPlace = function(place) {
-  //   $scope.selectedPlace = Place.get({ id: place._id });
-  // };
+  // SHOW
+  $scope.place = PlaceFactory.get({id: $stateParams.id});
 
 }])

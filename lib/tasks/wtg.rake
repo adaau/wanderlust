@@ -61,17 +61,13 @@ task :dest_data => :environment do
       #   attractions_array = html_doc6.css('div > div > div > div.views-field-title > span.field-content').to_s.gsub('<span class="field-content">','').split('</span>')
       #   attractions_array.map { |a| a.squish! }
 
-      params = {
-        name: city_name,
-        continent: region_name,
-        desc1: desc1,
-        desc2: desc2,
-        photo_main: photo_main
-      }
 
-      place = Place.new(params)
+      place = Place.find_or_create(name: params[:name])
+      place.desc1 = desc1
+      place.desc2 = desc2
+      place.photo_main = photo_main
       if place.save
-        puts "saved #{place.name}"
+        puts "saved #{place.name} || id: #{place.id}"
       else
         puts place.errors.messages
       end

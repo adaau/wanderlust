@@ -1,4 +1,9 @@
-<div ng-repeat="place in places | filter:location" ng-click="selectPlace(place)">
-  <place place="place"></place>
-</div>
+    <div class="row forms">
+      <search-form></search-form>
+    </div>
 
+    <ul>
+      <li ng-repeat="place in places | filter:{name: search.name, country: search.country}">
+        <a href="/#/places/{{ place.id }}"><place place="place"></place></a>
+      </li>
+    </ul>
