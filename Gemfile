@@ -20,6 +20,7 @@ gem 'devise_token_auth'
 gem 'omniauth'
 gem 'bower'
 gem 'nokogiri'
+gem 'flickraw'
 
 group :development, :test do
   gem 'better_errors'

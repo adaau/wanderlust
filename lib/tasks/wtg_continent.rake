@@ -5,7 +5,7 @@ task :data_by_continent => :environment do
   require "open-uri"
   require "nokogiri"
 
-  url = "http://www.worldtravelguide.net/washington-dc"
+  url = "http://www.worldtravelguide.net/asia"
   browser2 = open(url).read
   html_doc2 = Nokogiri::HTML(browser2)
 
@@ -17,14 +17,13 @@ task :data_by_continent => :environment do
 
   #   browser2 = open(region_url).read
   #   html_doc2 = Nokogiri::HTML(browser2)
-  # cities = html_doc.css(('div.tabberlive.tabberStyleTwo > div:nth-child(3).tabberTab > ul > li > a:nth-child(1)'))
-
-  # cities.each do | city |
-  #   city_name = city.text
-  #   city_url = 'http://www.worldtravelguide.net' + city.attr('href')
-  #   puts city_url
-    # browser2 = open(city_url).read
-    # html_doc2 = Nokogiri::HTML(browser2)
+  cities = html_doc.css(('div.tabberlive.tabberStyleTwo > div:nth-child(3).tabberTab > ul > li > a:nth-child(1)'))
+  cities.each do | city |
+    city_name = city.text
+    city_url = 'http://www.worldtravelguide.net' + city.attr('href')
+    puts city_url
+    browser2 = open(city_url).read
+    html_doc2 = Nokogiri::HTML(browser2)
 
     desc1 = html_doc2.css('div#block-block-265 p:first-child')
     desc2 = html_doc2.css('div#block-block-265 p:nth-child(2)')
@@ -53,8 +52,8 @@ task :data_by_continent => :environment do
       #   attractions_array.map { |a| a.squish! }
 
       params = {
-        name: "Washington DC",
-        continent: "North America",
+        name: city_name,
+        continent: "Asia",
         desc1: desc1,
         desc2: desc2,
         photo_main: photo_main
