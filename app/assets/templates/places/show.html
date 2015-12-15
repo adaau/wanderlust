@@ -14,8 +14,15 @@
   </ul>
 </div>
 
-<highchart id="chart1" config="chartConfig"></highchart>
-
 <div><button class="btn btn-default" ng-click="startCreating()">Bookmark</button></div>
 
 <bookmark-form></bookmark-form>
+
+<div>
+  <input ng-model="highchartsNG.title.text">
+  <button ng-click="addSeries()">Add Series</button>
+  <button ng-click="addPoints()">Add Points to Random Series</button>
+  <button ng-click="removeRandomSeries()">Remove Random Series</button>
+  <button ng-click="swapChartType()">Line/Bar</button>
+  <highchart id="chart1" config="highchartsNG"></highchart>
+</div>

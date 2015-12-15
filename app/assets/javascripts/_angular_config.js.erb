@@ -2,8 +2,6 @@ var app = angular.module('wanderlust', ['ui.router', 'ng-token-auth', 'ngResourc
 
 app.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function ($stateProvider, $urlRouterProvider, $authProvider) {
 
-  // $httpProvider.defaults.withCredentials = true;
-
   $urlRouterProvider.otherwise('/')
 
   $stateProvider

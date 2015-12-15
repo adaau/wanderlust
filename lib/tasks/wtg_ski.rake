@@ -1,57 +1,62 @@
-# desc "destination data of cities from worldtravelguide"
-# task :wtg_ski => :environment do
+desc "destination data of cities from worldtravelguide"
+task :wtg_ski => :environment do
 
-#   require "open-uri"
-#   require "nokogiri"
+  require "open-uri"
+  require "nokogiri"
 
-#   url = "http://www.worldtravelguide.net/ski"
-#   browser = open(url).read
-#   html_doc = Nokogiri::HTML(browser)
+  url = "http://www.worldtravelguide.net/ski"
+  browser = open(url).read
+  html_doc = Nokogiri::HTML(browser)
 
-#   cities = html_doc.css('div > div.tabberTab > ul > li > a')
-#   cities.each do | city |
-#     city_name = city.text
-#     city_url = "http://www.worldtravelguide.net" + city.attr('href')
+  cities = html_doc.css('div > div.tabberTab > ul > li > a')
+  cities.each do | city |
+    city_name = city.text
+    city_url = "http://www.worldtravelguide.net" + city.attr('href')
 
-#     browser2 = open(city_url).read
-#     html_doc2 = Nokogiri::HTML(browser2)
+    puts city_name
 
-#     desc1 = html_doc2.css('div#block-block-265 p:first-child').text
-#     desc2 = html_doc2.css('div#block-block-265 p:nth-child(2)').text
-#     desc3 = html_doc2.css('div#block-block-265 p:nth-child(3)').text
+    browser2 = open(city_url).read
+    html_doc2 = Nokogiri::HTML(browser2)
 
-#     photos_link = html_doc2.css('ul > li.expanded.first.menu-top-item.active-trail.full > ul.menu > li:nth-child(4).leaf.menu-child-item > a:nth-child(1)')
-#     photos_url = 'http://www.worldtravelguide.net' + photos_link.attr('href')
+    desc1 = html_doc2.css('div.content > div.field.field-type-text.field-field-intro > div.field-items > div.field-item.odd > p:nth-child(1)').text
+    desc2 = html_doc2.css('div.content > div.field.field-type-text.field-field-intro > div.field-items > div.field-item.odd > p:nth-child(2)').text
+    desc3 = html_doc2.css('div.content > div.field.field-type-text.field-field-intro > div.field-items > div.field-item.odd > p:nth-child(3)').text
 
-#     browser3 = open(photos_url).read
-#     html_doc3 = Nokogiri::HTML(browser3)
+    puts desc1
+    puts desc2
+    puts desc3
 
-#     if html_doc3.css('img.imagefield-field_hero_image')
-#       photo_main = html_doc3.css('img.imagefield-field_hero_image').attr('src')
-#       puts city_name
-#       puts photo_main
-#     end
+    photo_main = html_doc2.css('div > div > div > div > img.redesign-hero').attr('src')
+    puts photo_main
+    params = {
+      name: city_name,
+      desc1: desc1,
+      desc2: desc2,
+      desc3: desc3,
+      photo_main: photo_main,
+    }
 
-#     weather_link = html_doc2.css('ul > li.expanded.first.menu-top-item.active-trail.full > ul.menu > li:nth-child(3).leaf.menu-child-item > a:nth-child(1)')
-#     weather_url = 'http://www.worldtravelguide.net' + weather_link.attr('href')
-#     if weather_url
-#       browser4 = open(weather_url).read
-#       html_doc4 = Nokogiri::HTML(browser4)
+    place = Place.find_or_create_by(name: params[:name])
+    place.desc1    = desc1        if desc1 == nil
+    place.desc2 = desc2           if desc2 == nil
+    place.desc3 = desc3           if desc3 == nil
+    place.photo_main = photo_main if photo_main == nil
 
-#       best_time = html_doc4.css('div > div > div > div.field-item.odd > p').text
-#       puts best_time
-#     end
+    place.categories << Category.fourth
+    puts Category.fourth.name
 
-#     params = {
-#       name: city_name,
-#       desc1: desc1,
-#       desc2: desc2,
-#       desc3: desc3
-#       photo_main: photo_main,
-#       best_time: best_time
-#     }
+    place.months << Month.first
+    place.months << Month.second
+    place.months << Month.third
+    place.months << Month.find(12)
+    puts Month.second.name
+    puts Month.find(12).name
 
-#     place.categories << 2
+    if place.save
+      puts "saved #{place.name} || id: #{place.id}"
+    else
+      puts place.errors.messages
+    end
 
-#   end
-# end
+  end
+end
