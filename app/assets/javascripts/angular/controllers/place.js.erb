@@ -1,4 +1,4 @@
-app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', '$state', 'highchartsNG', function($scope, $auth, $stateParams, PlaceFactory, $state, highchartsNG){
+app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', '$state', '$http', 'highchartsNG', function($scope, $auth, $stateParams, PlaceFactory, $state, $http, highchartsNG){
   console.log('PlaceCtrl')
   $scope.places = [];
 
@@ -10,9 +10,16 @@ app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', 
     $scope.place = PlaceFactory.get({id: $stateParams.id});
   }
 
-  $scope.getRandomPlaces = function() {
-    // review-denis | http request for random places
+  function getRandomPlaces() {
+    $http
+      .get(url + '/api/places/random')
+      .then(function(response){
+        console.log(response)
+        $scope.randoms = response.data
+      })
   };
+
+  getRandomPlaces();
 
   // $scope.chartConfig = {
   //   options: {

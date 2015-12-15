@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/api/places/random', to: 'api/places#random'
+
   namespace :api do
     resources :places, only: [:index, :show]
     resources :bookmarks, except: [:edit, :update]
