@@ -4,8 +4,7 @@
 </div>
 
 <ul>
-  <!-- review-denis | add category filter -->
-  <li ng-repeat="place in places | filter:{name: search.name, country: search.country, months: search.month}">
+  <li ng-repeat="place in places | filter:{name: search.name, country: search.country, months: search.month, categories: search.category}">
     <a href="/#/places/{{ place.id }}"><place place="place"></place></a>
   </li>
 </ul>

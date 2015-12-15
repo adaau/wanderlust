@@ -6,9 +6,15 @@
 <div>Monthly Average Precipitation: {{ place.avg_precips }}</div>
 <div>Best Months to Visit: {{ place.months }}</div>
 <div>Categories: {{ place.categories }}</div>
-<div>{{ getRandomPlaces }}</div>
+<div>Places You May Also Like:
+  <ul>
+    <li ng-repeat="random in randoms">
+      {{ random.name }}, {{ random.country }}
+    </li>
+  </ul>
+</div>
 
-<!-- <highchart id="chart1" config="chartConfig"></highchart> -->
+<highchart id="chart1" config="chartConfig"></highchart>
 
 <div><button class="btn btn-default" ng-click="startCreating()">Bookmark</button></div>
 

@@ -3,7 +3,7 @@ module API
 
     def index
       # need to sort
-      @places = Place.includes(:months, :categories).limit(50).offset(50)
+      @places = Place.includes(:months, :categories).limit(50)
     end
 
     def show
