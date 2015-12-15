@@ -8,8 +8,10 @@ task :city_data => :environment do
   html_doc = Nokogiri::HTML(browser)
 
   regions = html_doc.css('div#center > div')
+  # regions = html_doc.css('div#center > div:nth-child(15)')
   countries_tables = html_doc.css('div#center > table')
-
+  # countries_tables = html_doc.css('div#center > table:nth-child(n+16)')
+  # because some cities don't have best months, need to scrape by hardcoding the region, the countries and then specify the row to start at
   regions.each_with_index do | region, index |
     region_name = region.text
     countries = countries_tables[index].css('tr > td > a')
@@ -36,6 +38,7 @@ task :city_data => :environment do
         best_months_array = html_doc3.css('div.content-main > div.box > p:nth-child(2)').to_s.gsub("</p>", '').split("<br>")
         best_months_array.shift
         best_months_array.map { |a| a.squish! }
+        puts best_months_array
 
         params = {
           name: city_name,
@@ -47,7 +50,7 @@ task :city_data => :environment do
 
         place = Place.find_or_create_by(name: params[:name])
         place.country = country_name          if place.country == nil
-        place.continent = region_name         if place.continent == nil
+        place.continent = region_name
         place.avg_temps = avg_temps_array     if place.avg_temps == nil
         place.avg_precips = avg_precips_array if place.avg_precips == nil
 
@@ -58,10 +61,7 @@ task :city_data => :environment do
         end
 
         best_months_array.each do | month |
-          month_id = Month.find_by(name: month)
-          place    = Place.find_by(name: city_name)
-
-          place.months << month_id
+          place.months <<  Month.find_by(name: month)
         end
 
       end

@@ -1,15 +1,11 @@
 module API
   class BookmarksController < ApplicationController
     before_action :authenticate_user!
-    skip_before_filter  :verify_authenticity_token, only: [:create]
+    skip_before_filter  :verify_authenticity_token, except: [:index]
 
     def index
       render json: current_user.bookmarks.includes(:place)
     end
-
-    # def show
-    #   render json: current_user.bookmark.find(params[:id])
-    # end
 
     def create
       bookmark = current_user.bookmarks.new(bookmark_params)

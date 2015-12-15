@@ -10,4 +10,9 @@ app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', 
   // SHOW
   $scope.place = PlaceFactory.get({id: $stateParams.id});
 
+  $scope.getRandomPlaces = function() {
+    return Place.limit(5).order("RANDOM()")
+  }
+
+
 }])

@@ -1,7 +1,11 @@
-<form>
+<!-- <form>
   <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-2">
     <div class="form-group">
-      <select name="month" class="form-control">
+      <input type="text" ng-model="search.month" placeholder="Input month" class="form-control">
+      <input type="text" ng-model="search.category" placeholder="Input category" class="form-control">
+
+
+      <select ng-model="search.month" name="month" class="form-control">
         <option disabled selected>Select Month</option>
         <option value="January">January</option>
         <option value="February">February</option>
@@ -18,7 +22,7 @@
       </select>
     </div>
     <div class="form-group">
-      <select name="category" class="form-control">
+      <select ng-model="search.category" name="category" class="form-control">
         <option disabled selected>Select Destination Category</option>
         <option value="Beach">Beach</option>
         <option value="City">City</option>
@@ -26,24 +30,6 @@
         <option value="Snow">Snow</option>
       </select>
     </div>
-  </div><!-- /.left form section -->
-
-  <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-1 col-md-offset-0">
-    <h4>OR</h4>
   </div>
-
-  <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0">
-    <div class="form-group">
-      <input ng-model="search.name" type="text" name="place" class="form-control" placeholder="Input city">
-    </div>
-    <div class="form-group">
-      <input ng-model="search.country" type="text" name="place" class="form-control" placeholder="Input country">
-    </div>
-  </div><!-- /.right form section -->
-
-<!--   <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-0">
-    <button type="submit" class="btn btn-info btn-heading">Discover</button>
-  </div>
-
+</form>
  -->
- </form>

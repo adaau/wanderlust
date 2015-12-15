@@ -47,10 +47,11 @@ task :wtg_cities => :environment do
       best_time: best_time
     }
 
-    place = Place.find_or_create_by(name: params[:name])
-    category_name = "city"
-    category_id = Category.find_by(name: category_name)
-    place.categories << category_id
+    # place = Place.find_or_create_by(name: params[:name])
+    # category_name = "city"
+    # category_id = Category.find_by(name: category_name)
+    # puts category_id
+    # place.categories << category_id
 
     place = Place.new(params)
     if place.save

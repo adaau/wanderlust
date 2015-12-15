@@ -15,10 +15,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/#/about">About<span class="sr-only">(current)</span></a></li>
-        <li><a ng-hide="current_user" href="/#/signup">Sign Up<span class="sr-only">(current)</span></a></li>
-        <li><a ng-hide="current_user" href="/#/login">Log In<span class="sr-only">(current)</span></a></li>
-        <li><a ng-show="current_user" href="/#" ng-click="logout()">Log Out<span class="sr-only">(current)</span></a></li>
+        <li><a ng-show="current_user" ui-sref="bookmarks">Bookmarks<span class="sr-only">(current)</span></a></li>
+        <li><a ng-hide="current_user" ui-sref="signup">Sign Up<span class="sr-only">(current)</span></a></li>
+        <li><a ng-hide="current_user" ui-sref="login">Log In<span class="sr-only">(current)</span></a></li>
+        <li><a ng-show="current_user" ui-sref="home" ng-click="logout()">Log Out<span class="sr-only">(current)</span></a></li>
         <li><span ng-show="current_user">{{ user.email }}</span></li>
       </ul>
     </div><!-- /.navbar-collapse -->
