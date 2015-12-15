@@ -3,30 +3,30 @@ app.controller('NavbarCtrl', ['$scope', '$auth', 'UserFactory', '$rootScope', fu
 
   // check if the user's auth token exists and is valid
   $auth.validateUser().then(function(user){
-    UserFactory.identity = user;
-    $scope.current_user = UserFactory.identity;
+    setUser(user);
   });
 
   // when user successfully logs in on login page
   $rootScope.$on('auth:login-success', function(ev, user) {
-    UserFactory.identity = user;
-    $scope.current_user = UserFactory.identity;
+    setUser(user);
   });
 
   // when user succesfully signs up with email on signup page
   $rootScope.$on('auth:registration-email-success', function(ev, user) {
-    UserFactory.identity = user;
-    $scope.current_user = UserFactory.identity;
+    setUser(user);
   });
 
   $scope.logout = function () {
     $auth.signOut().then(function(resp) {
       console.log(resp);
-      UserFactory.identity = null;
-      $scope.current_user = null;
+      setUser(null);
     }).catch(function(resp) {
       console.log(resp.data.errors);
     });
   };
 
-}])
+  function setUser (user) {
+    UserFactory.identity = user;
+    $scope.current_user = user;
+  }
+}]);

@@ -10,5 +10,10 @@ module API
       @place = Place.find(params[:id])
     end
 
+    def random
+      @places = Place.limit(5).order("RANDOM()")
+      render 'index.jbuilder'
+    end
+
   end
 end

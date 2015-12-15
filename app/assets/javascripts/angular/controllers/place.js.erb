@@ -1,33 +1,32 @@
-app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', function($scope, $auth, $stateParams, PlaceFactory){
+app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', '$state', 'highchartsNG', function($scope, $auth, $stateParams, PlaceFactory, $state, highchartsNG){
   console.log('PlaceCtrl')
   $scope.places = [];
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
 
-  // INDEX
-  $scope.places = PlaceFactory.query();
-
-  // SHOW
-  // $scope.place = PlaceFactory.get({id: $stateParams.id});
+  if ($state.current.name == "places") { // INDEX
+    $scope.places = PlaceFactory.query();
+  } else { // SHOW
+    $scope.place = PlaceFactory.get({id: $stateParams.id});
+  }
 
   $scope.getRandomPlaces = function() {
-    return Place.limit(5).order("RANDOM()")
-  }
+    // review-denis | http request for random places
+  };
 
-  $scope.chartConfig = {
-    options: {
-        chart: {
-            type: 'bar'
-        }
-    },
-    series: [{
-        data: [10, 15, 12, 8, 7]
-    }],
-    title: {
-        text: 'Hello'
-    },
+  // $scope.chartConfig = {
+  //   options: {
+  //     chart: {
+  //       type: 'bar'
+  //     }
+  //   },
+  //   series: [{
+  //     data: [10, 15, 12, 8, 7]
+  //   }],
+  //   title: {
+  //     text: 'Hello'
+  //   },
 
-    loading: false
-  }
-
+  //   loading: false
+  // }
 }])
