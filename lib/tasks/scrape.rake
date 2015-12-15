@@ -7,11 +7,11 @@ task :city_data => :environment do
   browser = open(url).read
   html_doc = Nokogiri::HTML(browser)
 
-  continents = html_doc.css('div#center > div')
+  regions = html_doc.css('div#center > div')
   countries_tables = html_doc.css('div#center > table')
 
-  continents.each_with_index do | continent, index |
-    continent_name = continent.text
+  regions.each_with_index do | region, index |
+    region_name = region.text
     countries = countries_tables[index].css('tr > td > a')
 
     countries.each do | country |
@@ -24,7 +24,7 @@ task :city_data => :environment do
       cities = html_doc2.css('tr > td > a')
 
       cities.each do | city |
-        city_name = city.css('b').text
+        city_name = city.css('b').text.gsub(/,.*/, '')
         city_url = "http://www.besttimetogo.com/" + city.attr('href')
 
         browser3 = open(city_url).read
@@ -40,14 +40,14 @@ task :city_data => :environment do
         params = {
           name: city_name,
           country: country_name,
-          continent: continent_name,
+          continent: region_name,
           avg_temps: avg_temps_array,
           avg_precips: avg_precips_array,
         }
 
         place = Place.find_or_create_by(name: params[:name])
         place.country = country_name          if place.country == nil
-        place.continent = continent_name      if place.continent == nil
+        place.continent = region_name         if place.continent == nil
         place.avg_temps = avg_temps_array     if place.avg_temps == nil
         place.avg_precips = avg_precips_array if place.avg_precips == nil
 
@@ -61,26 +61,10 @@ task :city_data => :environment do
           month_id = Month.find_by(name: month)
           place    = Place.find_by(name: city_name)
 
-          place.months << month_id unless place.months == []
-          # month_id = Month.find_by(name: month).id
-          # place_id = Place.find_by(name: city_name).id
-
-          # params = {
-          #   month_id: month_id,
-          #   place_id: place_id
-          # }
-
-          # month.places << params
-
-          # mp = MonthPlace.new(params)
-          # if mp.save
-          #   puts "saved #{month.id}"
-          # else
-          #   puts mp.errors.messages
-          # end
+          place.months << month_id
         end
+
       end
     end
   end
-
 end

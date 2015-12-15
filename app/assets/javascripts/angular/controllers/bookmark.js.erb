@@ -1,4 +1,4 @@
-app.controller('BookmarkCtrl', ['$scope', 'BookmarkFactory', function($scope, BookmarkFactory){
+app.controller('BookmarkCtrl', ['$scope', 'BookmarkFactory', '$stateParams', '$auth', function($scope, BookmarkFactory, $stateParams, $auth){
   console.log('BookmarkCtrl');
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
@@ -11,9 +11,8 @@ app.controller('BookmarkCtrl', ['$scope', 'BookmarkFactory', function($scope, Bo
   // CREATE
   $scope.createBookmark = function() {
     BookmarkFactory.save($scope.newBookmark, function(newBookmark) {
-      console.log(newBookmark);
       $scope.bookmarks.push(newBookmark);
-      $scope.newBookmark = {}
+      resetBookmarkForm();
     });
   }
 
@@ -27,7 +26,8 @@ app.controller('BookmarkCtrl', ['$scope', 'BookmarkFactory', function($scope, Bo
   function resetBookmarkForm() {
     $scope.newBookmark = {
       list: '',
-      comment: ''
+      comment: '',
+      place_id: $stateParams.id
     }
   }
 
