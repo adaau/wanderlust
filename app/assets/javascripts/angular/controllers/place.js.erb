@@ -1,0 +1,32 @@
+app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', '$state', 'highchartsNG', function($scope, $auth, $stateParams, PlaceFactory, $state, highchartsNG){
+  console.log('PlaceCtrl')
+  $scope.places = [];
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+
+  if ($state.current.name == "places") { // INDEX
+    $scope.places = PlaceFactory.query();
+  } else { // SHOW
+    $scope.place = PlaceFactory.get({id: $stateParams.id});
+  }
+
+  $scope.getRandomPlaces = function() {
+    // review-denis | http request for random places
+  };
+
+  // $scope.chartConfig = {
+  //   options: {
+  //     chart: {
+  //       type: 'bar'
+  //     }
+  //   },
+  //   series: [{
+  //     data: [10, 15, 12, 8, 7]
+  //   }],
+  //   title: {
+  //     text: 'Hello'
+  //   },
+
+  //   loading: false
+  // }
+}])

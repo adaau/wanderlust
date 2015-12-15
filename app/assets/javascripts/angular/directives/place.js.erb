@@ -1,0 +1,9 @@
+app.directive('place', function() {
+  return {
+    restrict: 'E',
+    templateUrl: '<%= asset_path("partials/place_thumb.html") %>',
+    scope: {
+      place: "="
+    }
+  }
+})

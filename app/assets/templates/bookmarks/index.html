@@ -1,0 +1,8 @@
+<ul>
+  <li ng-repeat="bookmark in bookmarks">
+    <div>{{ bookmark.list }}</div>
+    <div>{{ bookmark.comment }}</div>
+    <div>{{ bookmark.place_id }}</div>
+    <button ng-click="deleteBookmark(bookmark)" class="btn btn-danger">Delete</button>
+  </li>
+</ul>

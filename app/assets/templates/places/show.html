@@ -1,0 +1,15 @@
+<h1>{{ place.name }}, {{ place.country }}</h1>
+<img ng-src="{{ place.photo_main }}">
+<p>{{ place.desc1 }}</p>
+<p>{{ place.desc2 }}</p>
+<div>Monthly Average Temperature: {{ place.avg_temps }}</div>
+<div>Monthly Average Precipitation: {{ place.avg_precips }}</div>
+<div>Best Months to Visit: {{ place.months }}</div>
+<div>Categories: {{ place.categories }}</div>
+<div>{{ getRandomPlaces }}</div>
+
+<!-- <highchart id="chart1" config="chartConfig"></highchart> -->
+
+<div><button class="btn btn-default" ng-click="startCreating()">Bookmark</button></div>
+
+<bookmark-form></bookmark-form>
