@@ -21,7 +21,6 @@ gem 'omniauth'
 gem 'bower'
 gem 'nokogiri'
 gem 'flickraw'
-# gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'better_errors'

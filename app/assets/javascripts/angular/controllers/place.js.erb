@@ -8,11 +8,26 @@ app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', 
   $scope.places = PlaceFactory.query();
 
   // SHOW
-  $scope.place = PlaceFactory.get({id: $stateParams.id});
+  // $scope.place = PlaceFactory.get({id: $stateParams.id});
 
   $scope.getRandomPlaces = function() {
     return Place.limit(5).order("RANDOM()")
   }
 
+  $scope.chartConfig = {
+    options: {
+        chart: {
+            type: 'bar'
+        }
+    },
+    series: [{
+        data: [10, 15, 12, 8, 7]
+    }],
+    title: {
+        text: 'Hello'
+    },
+
+    loading: false
+  }
 
 }])

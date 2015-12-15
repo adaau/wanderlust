@@ -17,4 +17,5 @@
 //= require angular-ui-router/release/angular-ui-router.min
 //= require ng-token-auth/dist/ng-token-auth.min
 //= require angular-resource/angular-resource.min
+//= require highcharts-ng/dist/highcharts-ng.min
 //= require_tree .

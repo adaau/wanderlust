@@ -2,7 +2,8 @@ module API
   class PlacesController < ApplicationController
 
     def index
-      @places = Place.all
+      # need to sort
+      @places = Place.includes(:months, :categories).limit(50).offset(50)
     end
 
     def show

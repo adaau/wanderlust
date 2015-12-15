@@ -1,4 +1,5 @@
 json.array! @places do |place|
+  json.id           place.id
   json.name         place.name
   json.country      place.country
   json.continent    place.continent
@@ -8,6 +9,6 @@ json.array! @places do |place|
   json.desc3        place.desc3
   json.avg_temps    place.avg_temps
   json.avg_precips  place.avg_precips
-  json.months       place.months.pluck(:name).join(', ')
-  json.categories   place.categories.pluck(:name).join(', ')
+  json.months       place.months.select(:name).pluck(:name).join(', ')
+  json.categories   place.categories.select(:name).pluck(:name).join(', ')
 end

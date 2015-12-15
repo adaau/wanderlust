@@ -8,6 +8,8 @@
 <div>Categories: {{ place.categories }}</div>
 <div>{{ getRandomPlaces }}</div>
 
+<highchart id="temp-chart" config="chartConfig"></highchart>
+
 <div><button class="btn btn-default" ng-click="startCreating()">Bookmark</button></div>
 
 <bookmark-form></bookmark-form>
