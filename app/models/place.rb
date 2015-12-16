@@ -7,11 +7,11 @@ class Place < ActiveRecord::Base
   before_save :update_categories_names
 
   def update_months_names
-    self.month_names = self.months.select(:name).pluck(:name).join(', ')
+    self.month_names = self.months.select(:name).uniq.pluck(:name).join(', ')
   end
 
   def update_categories_names
-    self.category_names = self.categories.select(:name).pluck(:name).join(', ')
+    self.category_names = self.categories.select(:name).uniq.pluck(:name).join(', ')
   end
 
 end

@@ -11,13 +11,14 @@
       </button>
       <!-- <a href="/"><img src="../../images/wanderlust_logo.jpg"></a> -->
       <div id="logo" class="center-block brand">
-        <a href="/"><img src="../../images.wanderlust_logo.jpg"></a>
+        <a href="/"><img ng-src="<%= asset_path('wanderlust_logo.jpg') %>"></a>
       </div>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+        <li><a ui-sref="places">Destinations<span class="sr-only">(current)</span></a></li>
         <li><a ng-show="current_user" ui-sref="bookmarks">Bookmarks<span class="sr-only">(current)</span></a></li>
         <li><a ng-hide="current_user" ui-sref="signup">Sign Up<span class="sr-only">(current)</span></a></li>
         <li><a ng-hide="current_user" ui-sref="login">Log In<span class="sr-only">(current)</span></a></li>

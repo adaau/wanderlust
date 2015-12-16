@@ -1,70 +1,69 @@
 <div ng-init="getOne()">
-<section class="row">
-  <div class="col-xs-12">
-    <img class="main-img" ng-src="{{ place.photo_main }}">
-  </div>
-</section>
-
-<section class="row page-title">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <h1>{{ place.name | uppercase }}, {{ place.country | uppercase }}</h1>
-  </div>
-</section>
-
-<section class="row description">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <p>{{ place.desc1 }}</p>
-    <p>{{ place.desc2 }}</p>
-    <p>{{ place.desc3 }}</p>
-  </div>
-</section>
-
-<section class="row weather">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <div class="sub-heading">
-      <h2>WEATHER IN {{ place.name | uppercase }}</h2>
-      <div class="graph" google-chart chart="chartObjectTemp" style="height:600px; width:100%;"></div>
-      <div class="graph" google-chart chart="chartObjectPrecip" style="height:600px; width:100%;"></div>
+  <section class="row">
+    <div class="col-xs-12">
+      <img class="main-img" ng-src="{{ place.photo_main }}">
     </div>
-  </div>
-</section>
+  </section>
 
-
-<section class="row best-months">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <div class="sub-heading">
-      <h2>BEST MONTHS TO VISIT {{ place.name | uppercase }}</h2>
-      <div>{{ place.months }}</div>
+  <section class="row page-title">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <h1>{{ place.name | uppercase }}, {{ place.country | uppercase }}</h1>
     </div>
-  </div>
-</section>
-<section class="row recommendations">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <div>
-      <h3>You may also like</h3>
-      <div class="row">
-        <div class="col-sm-2 col-md-2 col-lg-2" ng-repeat="random in randoms" >
-          <a href="/#/places/{{ place.id }}">
-            <random random="random"></random>
-          </a>
+  </section>
+
+  <section class="row description">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <p>{{ place.desc1 }}</p>
+      <p>{{ place.desc2 }}</p>
+      <p>{{ place.desc3 }}</p>
+    </div>
+  </section>
+
+  <section class="row weather">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="sub-heading">
+        <h2>WEATHER IN {{ place.name | uppercase }}</h2>
+        <div class="graph" google-chart chart="chartObjectTemp" style="height:600px; width:100%;"></div>
+        <div class="graph" google-chart chart="chartObjectPrecip" style="height:600px; width:100%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row best-months">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="sub-heading">
+        <h2>BEST MONTHS TO VISIT {{ place.name | uppercase }}</h2>
+        <div>{{ place.months }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row recommendations">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div>
+        <h3>You may also like</h3>
+        <div class="row">
+          <div class="col-sm-2 col-md-2 col-lg-2" ng-repeat="random in randoms" >
+            <a href="/#/places/{{ place.id }}">
+              <random random="random"></random>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<section class="row bookmark">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <button class="btn btn-default" ng-click="startCreating()">Bookmark</button>
-    <bookmark-form></bookmark-form>
-  </div>
-</section>
+  </section>
 
-<!-- <div>
-  <input ng-model="highchartsNG.title.text">
-  <button ng-click="addSeries()">Add Series</button>
-  <button ng-click="addPoints()">Add Points to Random Series</button>
-  <button ng-click="removeRandomSeries()">Remove Random Series</button>
-  <button ng-click="swapChartType()">Line/Bar</button>
-  <highchart id="chart1" config="highchartsNG"></highchart>
-</div> -->
+  <section class="row flickr">
+    <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="picture in results.photos.photo">
+      <img ng-src="https://farm{{picture.farm}}.staticflickr.com/{{picture.server}}/{{picture.id}}_{{picture.secret}}_m.jpg" alt="">
+    </div>
+  </section>
+
+  <section class="row bookmark">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <button class="btn btn-default" ng-click="startCreating()" ng-hide="submissionSuccess">Bookmark</button>
+      <bookmark-form ng-hide="submissionSuccess"></bookmark-form>
+      <div ng-show="submissionSuccess">Bookmarked!</div>
+    </div>
+  </section>
 </div>

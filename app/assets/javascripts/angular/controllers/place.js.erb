@@ -6,37 +6,50 @@ app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', 
 
   // INDEX
   $scope.getAll = function (){
-    console.log('Finding all places');
     $scope.places = PlaceFactory.query();
-    console.log('Found: ', $scope.places);
   }
 
   $scope.getOne = function (){
-    console.log('Finding place: ', $stateParams.id);
     PlaceFactory.get({id: $stateParams.id}, function(place){
       $scope.place  = place;
       setupTempGraph();
       setupPrecipGraph();
+      $scope.search();
     });
+  }
 
+  $scope.search = function() {
+    var tmpHeader = $http.defaults.headers.get["If-Modified-Since"];
+    delete $http.defaults.headers.get["If-Modified-Since"];
+    $http({
+      method: 'GET',
+      url: 'https://api.flickr.com/services/rest',
+      params: {
+        method: 'flickr.photos.search',
+        api_key: '5e06713aefaf179f6b85cf638486e92d',
+        text: $scope.place.name + " landscape",
+        format: 'json',
+        nojsoncallback: 1
+      }
+    }).success(function(data) {
+      $http.defaults.headers.get["If-Modified-Since"] = tmpHeader;
+      $scope.results = data;
+    }).error(function(error) {
+      console.log(error);
+    });
   }
 
   function getRandomPlaces() {
-    $http
-      .get(url + '/api/places/random')
-      .then(function(response){
-        console.log(response)
-        $scope.randoms = response.data
-      })
+    randomPlacesUrl = url + '/api/places/random' + "?place_id=" + $stateParams.id
+    $http.get(randomPlacesUrl).then(function(response){
+      $scope.randoms = response.data
+    });
   };
 
   getRandomPlaces();
 
   function setupTempGraph(){
     var temp = $scope.place.avg_temps;
-    console.log('setupGraph');
-    console.log(temp);
-
     $scope.chartObjectTemp = {};
     $scope.chartObjectTemp.type = "LineChart";
     $scope.chartObjectTemp.data = {
@@ -79,7 +92,6 @@ app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', 
 
   function setupPrecipGraph(){
     var precip = $scope.place.avg_precips;
-
     $scope.chartObjectPrecip = {};
     $scope.chartObjectPrecip.type = "ColumnChart";
     $scope.chartObjectPrecip.data = {
