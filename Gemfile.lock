@@ -90,6 +90,8 @@ GEM
     erubis (2.7.0)
     execjs (2.6.0)
     flickraw (0.9.8)
+    font-awesome-sass (4.4.0)
+      sass (>= 3.2)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashie (3.4.3)
@@ -214,6 +216,7 @@ DEPENDENCIES
   devise_token_auth
   dotenv-rails
   flickraw
+  font-awesome-sass (~> 4.4.0)
   jbuilder (~> 2.0)
   jquery-rails
   nokogiri

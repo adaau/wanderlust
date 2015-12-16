@@ -14,6 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
+gem 'font-awesome-sass', '~> 4.4.0'
 gem 'wannabe_bool'
 gem 'paperclip', "~> 4.3"
 gem 'devise_token_auth'
@@ -21,6 +22,7 @@ gem 'omniauth'
 gem 'bower'
 gem 'nokogiri'
 gem 'flickraw'
+
 
 group :development, :test do
   gem 'better_errors'

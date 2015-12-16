@@ -1,3 +1,10 @@
+body{
+  font-family: 'Lato', sans-serif;
+  line-height: 1.5;
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
 body {
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -29,7 +36,6 @@ h6 {
 p {
   font-size: 13px;
   line-height: 1;
-  font-family: 'Merriweather', serif;
   margin-bottom: 5px;
 }
 
@@ -46,54 +52,19 @@ a:focus {
   margin-top: 50px;
 }
 
-/*Navbar*/
-nav.navbar-default {
-  margin-bottom: 0;
-}
-
-nav div.container-fluid {
-  background-color: #aaaaaa
-}
-
-nav.navbar-default .navbar-nav>li>a {
-    color: #ffffff;
-}
-
-nav.navbar-default .navbar-nav>li>a.hover {
-    color: #000080;
-}
-
-nav div.navbar-header a.logo {
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-nav ul.navbar-right {
-  margin-right: 50px;
-}
-
-nav ul.navbar-right>li {
-  margin-left: 10px;
-}
-
-nav ul li>a {
-  font-size: 1.2em;
-}
-
-
 /*Landing Page*/
 main#homepage {
   text-align: center;
-  color: #ffffff;
-  background-color: #000000;
+  // color: #ffffff;
+  // background-color: #000000;
   background-image: image-url("santorini.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
-  background-size: cover;
   -o-background-size: cover;
+  background-size: cover;
 }
 
 main#homepage .header-content {
@@ -120,9 +91,10 @@ main#homepage a.btn-heading {
   width: 200px;
 }
 
-main#homepage div.forms {
-  margin-top: 200px;
-  background-color: rgb(150, 150, 150); /*Fallback*/
-  background-color: rgba(150, 150, 150, 0.35);
-  padding: 20px 0 20px;
-}
+// main#homepage div.forms {
+//   margin-top: 200px;
+//   background-color: rgb(150, 150, 150); /*Fallback*/
+//   background-color: rgba(150, 150, 150, 0.35);
+//   padding: 20px 0 20px;
+// }
+

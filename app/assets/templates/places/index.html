@@ -1,10 +1,15 @@
-<div class="row forms">
-  <search-month></search-month>
-  <search-dest></search-dest>
-</div>
+<div ng-init="getAll()">
+  <div class="row forms">
+    <search-month></search-month>
+    <search-dest></search-dest>
+  </div>
 
-<ul>
-  <li ng-repeat="place in places | filter:{name: search.name, country: search.country, months: search.month, categories: search.category}">
-    <a href="/#/places/{{ place.id }}"><place place="place"></place></a>
-  </li>
-</ul>
+  <section id="place-index" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-4" ng-repeat="place in places | filter:{name: search.name, country: search.country, months: search.month, categories: search.category, photo_main: '!!'} | orderBy: 'name'" >
+        <a href="/#/places/{{ place.id }}"><place place="place"></place></a>
+      </div>
+    </div>
+  </section>
+
+</div>

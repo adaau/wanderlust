@@ -1,0 +1,9 @@
+app.directive('random', function() {
+  return {
+    restrict: 'E',
+    templateUrl: '<%= asset_path("partials/rec_thumb.html") %>',
+    scope: {
+      random: "="
+    }
+  }
+})
