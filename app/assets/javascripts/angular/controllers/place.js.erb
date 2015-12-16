@@ -14,11 +14,11 @@ app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', 
       $scope.place  = place;
       setupTempGraph();
       setupPrecipGraph();
-      $scope.search();
+      $scope.flickr();
     });
   }
 
-  $scope.search = function() {
+  $scope.flickr = function() {
     var tmpHeader = $http.defaults.headers.get["If-Modified-Since"];
     delete $http.defaults.headers.get["If-Modified-Since"];
     $http({
@@ -27,7 +27,10 @@ app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', 
       params: {
         method: 'flickr.photos.search',
         api_key: '5e06713aefaf179f6b85cf638486e92d',
-        text: $scope.place.name + " landscape",
+        text: $scope.place.name + " landmark",
+        accuracy: 11,
+        has_geo: 1,
+        per_page: 20,
         format: 'json',
         nojsoncallback: 1
       }

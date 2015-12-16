@@ -1,56 +1,6 @@
-body{
-  font-family: 'Lato', sans-serif;
-  line-height: 1.5;
-  color: #aaaaaa;
-  font-size: 14px;
-}
-
-body {
-  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
-}
-
-h1,
-h2 {
-  font-weight: bold;
-}
-
-h5 {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-h6 {
-  font-size: 15px;
-  margin-bottom: 0;
-}
-
-p {
-  font-size: 13px;
-  line-height: 1;
-  margin-bottom: 5px;
-}
-
-a {
-  color: #0099ff;
-}
-
-a:hover,
-a:focus {
-  color: #0000ff;
-}
-
-.top {
-  margin-top: 50px;
-}
+// // a {
+//   color: #0099ff;
+// }
 
 /*Landing Page*/
 main#homepage {
@@ -70,7 +20,7 @@ main#homepage {
 main#homepage .header-content {
   position: relative;
   width: 100%;
-  padding: 200px 15px 50px;
+  padding: 200px 15px 400px;
   text-align: center;
 }
 
@@ -79,22 +29,14 @@ main#homepage .header-content .header-content-inner h1 {
   margin-bottom: 20px;
   font-size: 50px;
   font-weight: bold;
+  color: #eeeeee;
 }
 
-main#homepage .header-content .header-content-inner p {
-  margin-bottom: 50px;
-  font-size: 16px;
-  color: rgba(255,255,255,0.7);
+main#homepage h3 {
+  color: #eeeeee;
 }
 
 main#homepage a.btn-heading {
+  margin-top: 100px;
   width: 200px;
 }
-
-// main#homepage div.forms {
-//   margin-top: 200px;
-//   background-color: rgb(150, 150, 150); /*Fallback*/
-//   background-color: rgba(150, 150, 150, 0.35);
-//   padding: 20px 0 20px;
-// }
-

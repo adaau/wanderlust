@@ -37,20 +37,20 @@ task :wtg_ski => :environment do
     }
 
     place = Place.find_or_create_by(name: params[:name])
-    place.desc1    = desc1        if desc1 == nil
-    place.desc2 = desc2           if desc2 == nil
-    place.desc3 = desc3           if desc3 == nil
-    place.photo_main = photo_main if photo_main == nil
+    place.desc1 = desc1           if place.desc1 == nil
+    place.desc2 = desc2           if place.desc2 == nil
+    place.desc3 = desc3           if place.desc3 == nil
+    place.photo_main = photo_main if place.photo_main == nil
 
-    place.categories << Category.fourth
-    puts Category.fourth.name
+    # place.categories << Category.fourth
+    # puts Category.fourth.name
 
-    place.months << Month.first
-    place.months << Month.second
-    place.months << Month.third
-    place.months << Month.find(12)
-    puts Month.second.name
-    puts Month.find(12).name
+    # place.months << Month.first
+    # place.months << Month.second
+    # place.months << Month.third
+    # place.months << Month.find(12)
+    # puts Month.second.name
+    # puts Month.find(12).name
 
     if place.save
       puts "saved #{place.name} || id: #{place.id}"

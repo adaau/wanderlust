@@ -6,22 +6,21 @@ app.controller('BookmarkCtrl', ['$scope', 'BookmarkFactory', '$stateParams', '$a
   $scope.isCreating = false
 
   // INDEX
-  $scope.getAllBookmarks = function(){
+  // $scope.getAllBookmarks = function(){
     $scope.bookmarks = BookmarkFactory.query()
-      .$promise
-      .then(function(result) {
-        $scope.bookmarks = result;
-        console.log($scope.bookmarks);
-        console.log($scope.bookmarks.list);
-    });
-  }
-
-  // var list = $scope.bookmarks.list;
-  // console.log(list);
-
+    window.debug = $scope.bookmarks;
+      // .$promise
+      // .then(function(result) {
+      //   $scope.bookmarks = result;
+  //       console.log($scope.bookmarks);
+  //       console.log($scope.bookmarks.list);
+  //   });
+  // }
+  console.log($scope.bookmarks)
   // CREATE
   $scope.createBookmark = function() {
     BookmarkFactory.save($scope.newBookmark, function(newBookmark) {
+      console.log(newBookmark);
       $scope.bookmarks.push(newBookmark);
       $scope.submissionSuccess = true;
       resetBookmarkForm();

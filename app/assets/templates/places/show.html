@@ -1,6 +1,6 @@
-<div ng-init="getOne()">
-  <section class="row">
-    <div class="col-xs-12">
+<div class="place-show-page" ng-init="getOne()">
+  <section class="row page-photo">
+    <div class="col-xs-12 page-photo">
       <img class="main-img" ng-src="{{ place.photo_main }}">
     </div>
   </section>
@@ -8,24 +8,17 @@
   <section class="row page-title">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <h1>{{ place.name | uppercase }}, {{ place.country | uppercase }}</h1>
+      <button class="btn btn-default" ng-click="startCreating()" ng-hide="submissionSuccess">Bookmark</button>
+      <bookmark-form ng-hide="submissionSuccess"></bookmark-form>
+      <div ng-show="submissionSuccess">Bookmarked!</div>
     </div>
   </section>
 
   <section class="row description">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <p>{{ place.desc1 }}</p>
-      <p>{{ place.desc2 }}</p>
-      <p>{{ place.desc3 }}</p>
-    </div>
-  </section>
-
-  <section class="row weather">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <div class="sub-heading">
-        <h2>WEATHER IN {{ place.name | uppercase }}</h2>
-        <div class="graph" google-chart chart="chartObjectTemp" style="height:600px; width:100%;"></div>
-        <div class="graph" google-chart chart="chartObjectPrecip" style="height:600px; width:100%;"></div>
-      </div>
+      <p class="place-show">{{ place.desc1 }}</p>
+      <p class="place-show">{{ place.desc2 }}</p>
+      <p class="place-show">{{ place.desc3 }}</p>
     </div>
   </section>
 
@@ -33,7 +26,28 @@
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <div class="sub-heading">
         <h2>BEST MONTHS TO VISIT {{ place.name | uppercase }}</h2>
-        <div>{{ place.months }}</div>
+        <h4>{{ place.months }}</h4>
+      </div>
+    </div>
+  </section>
+
+  <section class="row weather">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="sub-heading">
+        <h2>WEATHER IN {{ place.name | uppercase }}</h2>
+      </div>
+      <div class="graph" google-chart chart="chartObjectTemp" style="height:600px; width:100%;"></div>
+      <div class="graph" google-chart chart="chartObjectPrecip" style="height:600px; width:100%;"></div>
+    </div>
+  </section>
+
+  <section class="row flickr">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="sub-heading">
+        <h2>FLICKR PHOTO GALLERY FOR {{ place.name | uppercase }}</h2>
+        <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="picture in results.photos.photo">
+          <img class="flickr-img" ng-src="https://farm{{picture.farm}}.staticflickr.com/{{picture.server}}/{{picture.id}}_{{picture.secret}}_m.jpg" alt="">
+        </div>
       </div>
     </div>
   </section>
@@ -41,9 +55,9 @@
   <section class="row recommendations">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <div>
-        <h3>You may also like</h3>
+        <h3>Places you may also like</h3>
         <div class="row">
-          <div class="col-sm-2 col-md-2 col-lg-2" ng-repeat="random in randoms" >
+          <div class="col-sm-2 col-md-2 col-lg-2 rec-photos" ng-repeat="random in randoms" >
             <a href="/#/places/{{ place.id }}">
               <random random="random"></random>
             </a>
@@ -53,17 +67,4 @@
     </div>
   </section>
 
-  <section class="row flickr">
-    <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="picture in results.photos.photo">
-      <img ng-src="https://farm{{picture.farm}}.staticflickr.com/{{picture.server}}/{{picture.id}}_{{picture.secret}}_m.jpg" alt="">
-    </div>
-  </section>
-
-  <section class="row bookmark">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <button class="btn btn-default" ng-click="startCreating()" ng-hide="submissionSuccess">Bookmark</button>
-      <bookmark-form ng-hide="submissionSuccess"></bookmark-form>
-      <div ng-show="submissionSuccess">Bookmarked!</div>
-    </div>
-  </section>
 </div>

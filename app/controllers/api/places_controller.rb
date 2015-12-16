@@ -3,7 +3,7 @@ module API
 
     def index
       # need to sort
-      @places = Place.includes(:months, :categories).limit(50)
+      @places = Place.includes(:months, :categories)
     end
 
     def show
@@ -12,7 +12,7 @@ module API
 
     def random
       place = Place.find(params[:place_id])
-      @places = Place.limit(5).order("RANDOM()")
+      @places = Place.where(continent:place.continent).where.not(photo_main:nil).limit(5).order("RANDOM()")
       render 'index.jbuilder'
     end
 

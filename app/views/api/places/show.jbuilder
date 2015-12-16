@@ -11,5 +11,5 @@ json.extract! @place,
   :avg_precips,
   :best_time
 
-json.months @place.months.pluck(:name).join(', ')
-json.categories @place.categories.pluck(:name).join(', ')
+json.months @place.months.pluck(:name).uniq.join(', ')
+json.categories @place.categories.pluck(:name).uniq.join(', ')

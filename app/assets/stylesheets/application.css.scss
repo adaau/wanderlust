@@ -23,3 +23,23 @@
 font-family: 'Lato';
 src: url('Lato.ttf')  format('truetype');
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+}
+
+p {
+  font-family: 'Neuton', serif;
+  color: #555;
+}
+
+a {
+    color: #0099FF;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0000FF;
+    text-decoration: none;
+}
