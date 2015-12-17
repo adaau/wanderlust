@@ -1,32 +1,140 @@
-app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', '$state', 'highchartsNG', function($scope, $auth, $stateParams, PlaceFactory, $state, highchartsNG){
+app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', '$state', '$http', 'googlechart', function($scope, $auth, $stateParams, PlaceFactory, $state, $http, googlechart){
   console.log('PlaceCtrl')
   $scope.places = [];
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
 
-  if ($state.current.name == "places") { // INDEX
+  // INDEX
+  $scope.getAll = function (){
     $scope.places = PlaceFactory.query();
-  } else { // SHOW
-    $scope.place = PlaceFactory.get({id: $stateParams.id});
   }
 
-  $scope.getRandomPlaces = function() {
-    // review-denis | http request for random places
+  $scope.getOne = function (){
+    PlaceFactory.get({id: $stateParams.id}, function(place){
+      $scope.place  = place;
+      setupTempGraph();
+      setupPrecipGraph();
+      $scope.flickr();
+    });
+  }
+
+  $scope.flickr = function() {
+    var tmpHeader = $http.defaults.headers.get["If-Modified-Since"];
+    delete $http.defaults.headers.get["If-Modified-Since"];
+    $http({
+      method: 'GET',
+      url: 'https://api.flickr.com/services/rest',
+      params: {
+        method: 'flickr.photos.search',
+        api_key: '5e06713aefaf179f6b85cf638486e92d',
+        text: $scope.place.name + " landmark",
+        accuracy: 11,
+        has_geo: 1,
+        per_page: 20,
+        format: 'json',
+        nojsoncallback: 1
+      }
+    }).success(function(data) {
+      $http.defaults.headers.get["If-Modified-Since"] = tmpHeader;
+      $scope.results = data;
+    }).error(function(error) {
+      console.log(error);
+    });
+  }
+
+  function getRandomPlaces() {
+    randomPlacesUrl = url + '/api/places/random' + "?place_id=" + $stateParams.id
+    $http.get(randomPlacesUrl).then(function(response){
+      $scope.randoms = response.data
+    });
   };
 
-  // $scope.chartConfig = {
-  //   options: {
-  //     chart: {
-  //       type: 'bar'
-  //     }
-  //   },
-  //   series: [{
-  //     data: [10, 15, 12, 8, 7]
-  //   }],
-  //   title: {
-  //     text: 'Hello'
-  //   },
+  if ($stateParams.id) {
+    getRandomPlaces();
+  }
 
-  //   loading: false
-  // }
-}])
+  function setupTempGraph(){
+    var temp = $scope.place.avg_temps;
+    $scope.chartObjectTemp = {};
+    $scope.chartObjectTemp.type = "LineChart";
+    $scope.chartObjectTemp.data = {
+      "cols": [
+        {id: "t", label: "Average Temperature", type: "string"},
+        {id: "s", label: "Fahrenheit", type: "number"}
+      ],
+      "rows": [
+        {c: [{v: "Jan"},
+             {v: temp[0]   }]},
+        {c: [{v: "Feb"},
+             {v: temp[1]   }]},
+        {c: [{v: "Mar"},
+             {v: temp[2]   }]},
+        {c: [{v: "Apr"},
+             {v: temp[3]   }]},
+        {c: [{v: "May"},
+             {v: temp[4]   }]},
+        {c: [{v: "Jun"},
+             {v: temp[5]   }]},
+        {c: [{v: "Jul"},
+             {v: temp[6]   }]},
+        {c: [{v: "Aug"},
+             {v: temp[7]   }]},
+        {c: [{v: "Sep"},
+             {v: temp[8]   }]},
+        {c: [{v: "Oct"},
+             {v: temp[9]   }]},
+        {c: [{v: "Nov"},
+             {v: temp[10]   }]},
+        {c: [{v: "Dec"},
+             {v: temp[11]   }]}
+    ]};
+    $scope.chartObjectTemp.options = {
+      'title': 'Average Monthly Temperatures',
+      'vAxis': {title: 'Temperature (F)'},
+      'legend': {position: 'none'}
+    };
+  }
+
+  function setupPrecipGraph(){
+    var precip = $scope.place.avg_precips;
+    $scope.chartObjectPrecip = {};
+    $scope.chartObjectPrecip.type = "ColumnChart";
+    $scope.chartObjectPrecip.data = {
+      "cols": [
+        {id: "t", label: "Average Precipitation", type: "string"},
+        {id: "s", label: "Inches", type: "number"}
+      ],
+      "rows": [
+        {c: [{v: "Jan"},
+             {v: precip[0]   }]},
+        {c: [{v: "Feb"},
+             {v: precip[1]   }]},
+        {c: [{v: "Mar"},
+             {v: precip[2]   }]},
+        {c: [{v: "Apr"},
+             {v: precip[3]   }]},
+        {c: [{v: "May"},
+             {v: precip[4]   }]},
+        {c: [{v: "Jun"},
+             {v: precip[5]   }]},
+        {c: [{v: "Jul"},
+             {v: precip[6]   }]},
+        {c: [{v: "Aug"},
+             {v: precip[7]   }]},
+        {c: [{v: "Sep"},
+             {v: precip[8]   }]},
+        {c: [{v: "Oct"},
+             {v: precip[9]   }]},
+        {c: [{v: "Nov"},
+             {v: precip[10]   }]},
+        {c: [{v: "Dec"},
+             {v: precip[11]   }]}
+    ]};
+    $scope.chartObjectPrecip.options = {
+      'title': 'Average Monthly Precipitation',
+      'vAxis': {title: 'Precipitation (in)'},
+      'legend': {position: 'none'}
+    };
+  }
+
+}]);

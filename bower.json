@@ -7,6 +7,7 @@
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.6",
     "angular-resource": "~1.4.8",
-    "highcharts-ng": "~0.0.11"
+    "highcharts-ng": "~0.0.11",
+    "angular-google-chart": "~0.1.0"
   }
 }

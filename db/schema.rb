@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215113754) do
+ActiveRecord::Schema.define(version: 20151217055729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,12 @@ ActiveRecord::Schema.define(version: 20151215113754) do
   create_table "bookmarks", force: :cascade do |t|
     t.string   "list"
     t.string   "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "place_id"
     t.integer  "user_id"
+    t.string   "place_name"
+    t.integer  "list_number"
   end
 
   add_index "bookmarks", ["place_id"], name: "index_bookmarks_on_place_id", using: :btree
@@ -59,17 +61,18 @@ ActiveRecord::Schema.define(version: 20151215113754) do
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.string   "country"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "continent"
-    t.text     "avg_temps",                array: true
-    t.text     "avg_precips",              array: true
+    t.text     "avg_temps",                   array: true
+    t.text     "avg_precips",                 array: true
     t.text     "desc1"
     t.text     "desc2"
     t.text     "photo_main"
     t.text     "desc3"
     t.text     "best_time"
     t.string   "month_names"
+    t.string   "category_names"
   end
 
   create_table "users", force: :cascade do |t|

@@ -5,7 +5,7 @@ module API
     skip_before_filter  :verify_authenticity_token, except: [:index]
 
     def index
-      render json: current_user.bookmarks
+      render json: current_user.bookmarks.order(:list_number)
     end
 
     def create

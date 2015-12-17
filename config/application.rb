@@ -38,5 +38,6 @@ module App
     #   resource '*', :headers => :any, :methods => [:get, :put, :delete, :post, :options]
     #   end
     # end
+
   end
 end
