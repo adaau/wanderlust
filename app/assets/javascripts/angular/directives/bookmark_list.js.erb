@@ -1,0 +1,9 @@
+app.directive('bookmarkList', function() {
+  return {
+    restrict: 'E',
+    templateUrl: '<= asset_path("partials/bookmark_list.html") %>',
+    scope: {
+      list: '='
+    }
+  }
+})

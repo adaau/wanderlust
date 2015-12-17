@@ -9,6 +9,8 @@ app.controller('BookmarkCtrl', ['$scope', 'BookmarkFactory', '$stateParams', '$a
   // $scope.getAllBookmarks = function(){
     $scope.bookmarks = BookmarkFactory.query()
     window.debug = $scope.bookmarks;
+    sortBookmarks();
+    console.log($scope.list)
       // .$promise
       // .then(function(result) {
       //   $scope.bookmarks = result;
@@ -33,6 +35,18 @@ app.controller('BookmarkCtrl', ['$scope', 'BookmarkFactory', '$stateParams', '$a
     BookmarkFactory.delete({ id: bookmark.id });
     var index = $scope.bookmarks.indexOf(bookmark);
     $scope.bookmarks.splice(index, 1);
+  }
+
+  function sortBookmarks() {
+    $scope.list = {}
+    $scope.bookmarks.forEach(function(bookmark){
+      if ($scope.list[bookmark.list]) {
+        $scope.list[bookmark.list].push(bookmark)
+      }
+      else {
+        $scope.list[bookmark.list] = [bookmark]
+      }
+    });
   }
 
   function resetBookmarkForm() {
