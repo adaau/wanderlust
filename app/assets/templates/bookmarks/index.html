@@ -1,19 +1,21 @@
-<h1>Bookmarks</h1>
+<main id="bookmarks">
+  <h1>Bookmarks</h1>
 
-
-
-<ul>
-  <li ng-repeat="bookmark in bookmarks">
-    <div>{{ bookmark.list }}</div>
-    <div>{{ bookmark.comment }}</div>
-    <div>{{ bookmark.place_id }}</div>
-    <button ng-click="deleteBookmark(bookmark)" class="btn btn-danger">Delete</button>
-  </li>
-</ul>
-<!-- <ul>
-  <li ng-repeat="bookmark in bookmarks">
-    <div>{{bookmark.list}}</div>
-  </li>
-</ul>
- -->
- <!-- ng-show="{{ bookmark.list }}=='January'"-->
+  <div class="row">
+    <div class="col-xs-12 col-md-5 bm-list" ng-repeat="(category, bookmarks) in monthCategoryList | orderBy: 'monthNumber'">
+      <h3>{{ category }}</h3>
+      <table class="table table-bookmark">
+        <tr class="active">
+          <th width="30%">Destination</th>
+          <th width="60%">Note</th>
+          <th width="10%"> </th>
+        </tr>
+        <tr ng-repeat="bookmark in bookmarks">
+          <td>{{ bookmark.place_name }}</td>
+          <td>{{ bookmark.comment }}</td>
+          <td><button class="btn-bookmark" ng-click="deleteBookmark(bookmark)">x</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</main>

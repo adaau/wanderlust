@@ -1,0 +1,26 @@
+main#bookmarks {
+  padding: 0 20px;
+}
+
+div.bm-list {
+  background-color: #f5f5f5;
+  margin: 10px;
+}
+
+table.table-bookmark {
+  padding: 0 20px;
+}
+
+button.btn-bookmark {
+  margin-left: 0.618rem;
+  border: 1px solid rgba(0,0,0,0.30);
+  border-radius: 100px;
+  background: white;
+  color: rgba(0,0,0,0.30);
+  cursor: pointer;
+}
+
+button.btn-bookmark:hover {
+  border-color: rgba(0,0,0,0.50);
+  color: rgba(0,0,0,0.50);
+}
