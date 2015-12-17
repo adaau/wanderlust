@@ -49,7 +49,9 @@ app.controller('PlaceCtrl', ['$scope', '$auth', '$stateParams', 'PlaceFactory', 
     });
   };
 
-  getRandomPlaces();
+  if ($stateParams.id) {
+    getRandomPlaces();
+  }
 
   function setupTempGraph(){
     var temp = $scope.place.avg_temps;
